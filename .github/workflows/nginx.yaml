@@ -35,3 +35,16 @@ jobs:
         docker run --rm my-nginx-image:${{ github.sha }}-3 nginx -t
         docker rmi my-nginx-image:${{ github.sha }}-3
         echo "Finished build 3"
+  build2:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        build-number: [1, 2, 3, 4, 5, 6]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build docker
+      run: |
+        echo "Building docker for build number: ${{ matrix.build-number }}"
+        docker build -t test-${{ matrix.build-number }} .        
