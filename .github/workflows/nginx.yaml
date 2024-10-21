@@ -22,17 +22,29 @@ jobs:
 
   build2:
     runs-on: self-hosted
-    strategy:
-      matrix:
-        build-number: [1, 2, 3, 4, 5, 6]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: Build docker
+    - name: First Build
       run: |
-        echo "Building docker for build number: ${{ matrix.build-number }}"
-        docker build -t test-${{ matrix.build-number }} .        
+        echo "Starting build 1"
+        docker build -t my-nginx-image:${{ github.sha }}-1 .
+        docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
+        docker rmi my-nginx-image:${{ github.sha }}-1
+        echo "Finished build 1"         
+  build7:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: First Build
+      run: |
+        echo "Starting build 1"
+        docker build -t my-nginx-image:${{ github.sha }}-1 .
+        docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
+        docker rmi my-nginx-image:${{ github.sha }}-1
+        echo "Finished build 1"      
+        
   build3:
       runs-on: self-hosted
       steps:
@@ -45,3 +57,53 @@ jobs:
           docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
           docker rmi my-nginx-image:${{ github.sha }}-1
           echo "Finished build 1"
+  build36:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: First Build
+      run: |
+        echo "Starting build 1"
+        docker build -t my-nginx-image:${{ github.sha }}-1 .
+        docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
+        docker rmi my-nginx-image:${{ github.sha }}-1
+        echo "Finished build 1"
+
+  build22:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: First Build
+      run: |
+        echo "Starting build 1"
+        docker build -t my-nginx-image:${{ github.sha }}-1 .
+        docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
+        docker rmi my-nginx-image:${{ github.sha }}-1
+        echo "Finished build 1"         
+  build27:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: First Build
+      run: |
+        echo "Starting build 1"
+        docker build -t my-nginx-image:${{ github.sha }}-1 .
+        docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
+        docker rmi my-nginx-image:${{ github.sha }}-1
+        echo "Finished build 1"      
+        
+  build13:
+      runs-on: self-hosted
+      steps:
+      - uses: actions/checkout@v2
+  
+      - name: First Build
+        run: |
+          echo "Starting build 1"
+          docker build -t my-nginx-image:${{ github.sha }}-1 .
+          docker run --rm my-nginx-image:${{ github.sha }}-1 nginx -t
+          docker rmi my-nginx-image:${{ github.sha }}-1
+          echo "Finished build 1"         
