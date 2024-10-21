@@ -1,3 +1,3 @@
 # gha_k8s
 
-Perfomance with updates
+Perfomance with updates loadtesting
